@@ -1,6 +1,71 @@
+# 设置
+- 修改 hosts，加入如下配置。
+```
+127.0.0.1 sso.nekolr.com
+127.0.0.1 www.app-a.com
+127.0.0.1 www.app-b.com
+```
+- 修改 nginx 配置文件 nginx.conf，加入如下配置。
+```
+# authentication server
+#
+server {
+    listen       80;
+    server_name  sso.nekolr.com;
+
+    ssl_session_cache    shared:SSL:1m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+    }
+
+    error_page  404              /404.html;
+}
+
+# appA server
+#
+server {
+    listen       8001;
+    server_name  www.app-a.com;
+
+    ssl_session_cache    shared:SSL:1m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+
+    location / {
+        proxy_pass http://127.0.0.1:8081;
+    }
+
+    error_page  404              /404.html;
+}
+
+# appB server
+#
+server {
+    listen       8002;
+    server_name  www.app-b.com;
+
+    ssl_session_cache    shared:SSL:1m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+
+    location / {
+        proxy_pass http://127.0.0.1:8082;
+    }
+
+    error_page  404              /404.html;
+}
+```
+
 # 单点登录步骤
-
-
 
 - 1. 用户未登录时访问子站 A，子站 A 服务器检测到用户没登录（没有本站 session），于是通知浏览器跳转到 SSO 服务站点，并在跳转的 URL 参数中带上当前页面地址，以便登录后自动跳转回本页。  
 
