@@ -1,0 +1,26 @@
+[
+  {
+    "userId": "01",
+    "userName": "saber",
+    "sex": "女",
+    "age": "22",
+    "accountName": "saber",
+    "accountPwd": "2333"
+  },
+  {
+    "userId": "02",
+    "userName": "avalon",
+    "sex": "男",
+    "age": "23",
+    "accountName": "avalon",
+    "accountPwd": "232323"
+  },
+  {
+    "userId": "03",
+    "userName": "alice",
+    "sex": "女",
+    "age": "12",
+    "accountName": "alice",
+    "accountPwd": "88888"
+  }
+]

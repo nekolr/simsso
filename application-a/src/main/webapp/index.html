@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+    function getCurrentUrl() {
+        return window.location.protocol + "//" + window.location.host + "/index.do";
+    }
+    window.addEventListener("DOMContentLoaded", function (evt) {
+        window.location.href = "/index.do?returnUrl=" + getCurrentUrl();
+    })
+</script>
+</html>
